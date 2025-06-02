@@ -1,90 +1,63 @@
-import { render, screen } from '@testing-library/react';
-import Header from '../Header';
+const { render, screen } = require("@testing-library/react");
+import Header from "../Header";
 
-describe("Header", () => {
-    it('should render same text passed into title prop', () => {
-        render(
-            <Header 
-              title="todo"
-            />
-        );
-        const h1Element = screen.getByText(/todo/i);
-        expect(h1Element).toBeInTheDocument();
-    });
-})
+describe("make shure the hader is rending corrctly ", () => {
+  it("should render same test passed into title prop", () => {
+    render(<Header title={"my Header"} />);
 
-// it('should render same text passed into title prop', () => {
-//     render(
-//         <Header 
-//           title="todo"
-//         />
-//     );
-//     const h1Element = screen.getByRole("heading");
-//     expect(h1Element).toBeInTheDocument();
-// });
+    const headingElement = screen.getByText(/my Header/i);
+    expect(headingElement).toBeInTheDocument();
+  });
 
-// it('should render same text passed into title prop', () => {
-//     render(
-//         <Header 
-//           title="todo"
-//         />
-//     );
-//     const h1Element = screen.getByRole("heading", { name: /todo/i });
-//     expect(h1Element).toBeInTheDocument();
-// });
+  it("should get the role of the Element", () => {
+    render(<Header title={"my Header"} />);
 
-// it('should render same text passed into title prop', () => {
-//     render(
-//         <Header 
-//           title="todo"
-//         />
-//     );
-//     const h1Element = screen.getByTitle("Header");
-//     expect(h1Element).toBeInTheDocument();
-// });
+    const headingElement = screen.getByRole("heading", { name: "my Header" });
+    expect(headingElement).toBeInTheDocument();
+  });
 
-// it('should render same text passed into title prop', () => {
-//     render(
-//         <Header 
-//           title="todo"
-//         />
-//     );
-//     const h2Element = screen.getByTestId("header-2");
-//     expect(h2Element).toBeInTheDocument();
-// });
+  it("should get the role of the Element", () => {
+    render(<Header />);
+    const headingElement = screen.getByRole("heading", { name: "Hello" });
+    expect(headingElement).toBeInTheDocument();
+  });
 
-// // WITH FINDBY
+  it("should get the role of the Element", () => {
+    render(<Header />);
+    const headingElement = screen.getByTestId("header-2");
+    expect(headingElement).toBeInTheDocument();
+  });
+});
 
-// it('should render same text passed into title prop', async () => {
-//     render(
-//         <Header 
-//           title="todo"
-//         />
-//     );
-//     const h1Element = await screen.findByText(/todo/i);
-//     expect(h1Element).toBeInTheDocument();
-// });
+/// this all will be the findBy
 
-// // WITH QUERYBY
+describe("this are the findBy method of testing", () => {
+  it("it should get thing by method called findBy", async () => {
+    render(<Header title={"findBy one"} />);
 
-// it('should render same text passed into title prop', () => {
-//     render(
-//         <Header 
-//           title="todo"
-//         />
-//     );
-//     const h1Element = screen.queryByText(/dogs/i);
-//     expect(h1Element).not.toBeInTheDocument
-// });
+    const headingElement = await screen.findByText(/findBy one/i);
+    expect(headingElement).toBeInTheDocument();
+  });
+});
 
-// // WITH GETALLBY
+// the query by one
 
-// it('should render same text passed into title prop', () => {
-//     render(
-//         <Header 
-//           title="todo"
-//         />
-//     );
-//     const h1Elements = screen.getAllByText(/todo/i);
-//     expect(h1Elements.length).toBe(1);
-// });
+describe("this is the query by one ", async () => {
+  it("it should get thing by method called findBy", () => {
+    render(<Header title={"findBy one"} />);
+
+    const headingElement = screen.queryByText(/findBy one/i);
+    expect(headingElement).toBeInTheDocument();
+  });
+});
+
+// this is the get all by role method
+
+describe("this is the query by one ", async () => {
+  it("it should get thing by method called findBy", () => {
+    render(<Header title={"findBy one"} />);
+
+    const headingElement = screen.getAllByRole("heading");
+    expect(headingElement.length).toBe(2);
+  });
+});
