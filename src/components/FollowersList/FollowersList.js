@@ -16,9 +16,6 @@ export default function FollowersList() {
 
         fetchFollowers()
     }, []);
-
-
-
     return (
         <div className="followerslist-container">
             <div>
